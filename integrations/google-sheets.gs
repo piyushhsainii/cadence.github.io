@@ -6,6 +6,7 @@ function doPost(e) {
   const configuredOrigin = String(
     config.getProperty("SITE_ORIGIN") || "",
   ).trim();
+
   let origin = configuredOrigin;
   try {
     origin = new URL(configuredOrigin).origin;
@@ -25,7 +26,8 @@ function doPost(e) {
       JSON.stringify({ ok: false, error: "invalid origin or request" }),
     ).setMimeType(ContentService.MimeType.JSON);
   }
-
+  console.log("postData:", e && e.postData && e.postData.contents);
+  console.log("parameter:", JSON.stringify(e && e.parameter));
   const lock = LockService.getScriptLock();
   try {
     const name = String(p.name || "").trim(),
