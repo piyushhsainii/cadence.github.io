@@ -2303,12 +2303,17 @@ dialog p {
   }
 }
 
-/* Compact service cards: shorter image panels and half the internal spacing. */
-#services .service-grid{gap:16px;margin-top:28px}
+/* Compact cards retain the artwork’s native 3:2 proportions. */
+#services .service-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:28px}
 #services .service-card{padding:20px;border-radius:var(--radius-md);overflow:hidden}
-#services .service-image{width:calc(100% + 40px);height:120px;aspect-ratio:auto;object-fit:contain;background:var(--cream);margin:-20px -20px 16px;border-radius:0}
-#services .service-card h3{font-size:25px;line-height:1.12;letter-spacing:-.6px;margin:10px 0 12px}
+#services .service-image{width:calc(100% + 40px);height:auto;aspect-ratio:3/2;object-fit:cover;background:var(--cream);margin:-20px -20px 16px;border-radius:0}
+#services .service-card h3{font-size:23px;line-height:1.12;letter-spacing:-.6px;margin:10px 0 12px}
 #services .service-card p{font-size:12px;line-height:1.65;margin-bottom:16px}
 #services .service-tags{gap:6px}
 #services .service-tags .pill{font-size:9px;padding:3px 9px}
-@media(max-width:719px){#services .service-grid{gap:14px}#services .service-card{padding:18px}#services .service-image{width:calc(100% + 36px);height:96px;margin:-18px -18px 14px}#services .service-card h3{font-size:23px}}
+@media(max-width:1099px){#services .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:599px){#services .service-grid{grid-template-columns:1fr;gap:14px}#services .service-card{padding:18px}#services .service-image{width:calc(100% + 36px);height:auto;aspect-ratio:3/2;margin:-18px -18px 14px}#services .service-card h3{font-size:23px}}
+/* Use the generated mark in the footer lockup as well as the header. */
+.footer .brand{font-size:0;gap:10px}
+.footer .brand::before{content:"";display:block;width:36px;height:36px;border-radius:11px;background:var(--cream) url("assets/cadence-logo.png") center/contain no-repeat}
+.footer .brand::after{content:"Cadence®";font-size:25px;letter-spacing:-1.3px}
