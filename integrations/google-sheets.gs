@@ -39,7 +39,5 @@ function doPost(e) {
     if (lock.hasLock()) lock.releaseLock();
   }
   const payload = JSON.stringify({ type: 'cadence-lead', requestId: requestId, ok: ok }).replace(/</g, '\\u003c');
-  const destination = JSON.stringify(origin).replace(/</g, '\\u003c');
-  return HtmlService.createHtmlOutput('<script>window.top.postMessage(' + payload + ',' + destination + ');</script>')
-    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  return ContentService.createTextOutput(payload).setMimeType(ContentService.MimeType.JSON);
 }

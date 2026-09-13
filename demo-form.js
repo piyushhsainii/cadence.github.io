@@ -3,7 +3,7 @@
   const form = document.querySelector('#demo-form');
   const status = document.querySelector('#demo-status');
   const submit = document.querySelector('#demo-submit');
-  let pending = false, requestId = '', timeout, transport, iframe;
+  let pending = false, requestId = '', timeout;
   form.addEventListener('input', () => { if (!pending) requestId = ''; });
   document.querySelectorAll('[data-demo]').forEach(button => button.addEventListener('click', event => {
     event.preventDefault(); modal.showModal();
@@ -17,7 +17,6 @@
     clearTimeout(timeout); pending = false; submit.disabled = false;
     form.removeAttribute('aria-busy'); submit.textContent = 'Request a Demo ↗';
     form.querySelectorAll('input, select, textarea').forEach(field => field.disabled = false);
-    transport?.remove(); iframe?.remove();
   }
   window.addEventListener('message', event => {
     const trusted = /^https:\/\/([a-z0-9-]+\.)?script\.googleusercontent\.com$/.test(event.origin) || event.origin === 'https://script.google.com';
@@ -43,21 +42,16 @@
     requestId ||= crypto.randomUUID();
     const data = new FormData(form);
     data.set('requestId', requestId); data.set('origin', location.origin);
-    // A normal form POST supports Apps Script redirects without opaque fetch success.
-    iframe = document.createElement('iframe'); iframe.name = 'cadence-' + requestId;
-    iframe.hidden = true; iframe.title = 'Demo submission response'; document.body.append(iframe);
-    transport = document.createElement('form'); transport.hidden = true;
-    transport.method = 'POST'; transport.action = endpoint; transport.target = iframe.name;
-    for (const [name, value] of data) {
-      const input = document.createElement('input'); input.type = 'hidden'; input.name = name; input.value = value;
-      transport.append(input);
-    }
-    document.body.append(transport); pending = true; submit.disabled = true;
+    // Apps Script redirects its response to a Google-hosted origin that cannot be framed.
+    // A simple no-cors POST avoids preflight and the X-Frame-Options restriction.
+    pending = true; submit.disabled = true;
     form.setAttribute('aria-busy', 'true'); submit.textContent = 'Sending…'; status.textContent = '';
     form.querySelectorAll('input, select, textarea').forEach(field => field.disabled = true);
     timeout = setTimeout(() => {
       cleanup(); status.textContent = 'We couldn’t confirm delivery. Retry safely, or email us below. Your details are still here.';
     }, 30000);
-    transport.submit();
+    fetch(endpoint, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data) })
+      .then(() => { if (!pending) return; cleanup(); form.reset(); requestId = ''; status.textContent = 'Thanks! Your request is received. We’ll get back to you within 24 hours.'; })
+      .catch(() => { if (!pending) return; cleanup(); status.textContent = 'We couldn’t send your request. Please try again or email us below.'; });
   });
 })();

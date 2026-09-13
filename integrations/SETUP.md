@@ -13,7 +13,7 @@ The form is implemented, but submissions are disabled until a real endpoint is c
 
 If the endpoint opens an **Authorization needed** page (as in the browser network response), the deployment is not public yet. Edit the deployment, set **Execute as: Me**, set **Who has access: Anyone**, authorize the spreadsheet permission as the owner, and deploy a new version. Do not use “Only myself” or “Anyone within your organization”; those settings prevent a public GitHub Pages site from submitting. Re-test the `/exec` URL in an incognito window before testing the form.
 
-The response uses a hidden iframe and a request-specific acknowledgement, rather than assuming a cross-origin request succeeded. Retrying an uncertain request with the same ID does not create a second row. No credentials belong in the website files. This is a public lead endpoint with validation and a honeypot, not an authenticated API; consider managed anti-spam protection if unsolicited submissions become a problem.
+The site submits a simple cross-origin `no-cors` POST, so it does not frame Google’s response and avoids X-Frame-Options errors. The browser cannot read an opaque cross-origin response; the UI confirms after the request completes, while the Sheet is the source of truth. Every valid submission appends a new row. No credentials belong in the website files. This is a public lead endpoint with validation and a honeypot, not an authenticated API; consider managed anti-spam protection if unsolicited submissions become a problem.
 
 The 24-hour reply is a promise in the copy, not an automated reply or notification. Check the sheet regularly. Customer details are used only to respond to their inquiry; honor deletion requests made to your contact email.
 
