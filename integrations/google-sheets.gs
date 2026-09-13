@@ -7,8 +7,10 @@ function doPost(e) {
   // Accept either a bare origin or a full GitHub Pages URL, then compare only origins.
   let origin = configuredOrigin;
   try { origin = new URL(configuredOrigin).origin; } catch (ignore) {}
-  let p = {};
-  try { p = JSON.parse(e.postData.contents || '{}'); } catch (ignore) {}
+  let p = e && e.parameter || {};
+  try {
+    if (e && e.postData && e.postData.contents) p = Object.assign(p, JSON.parse(e.postData.contents));
+  } catch (ignore) {}
   const requestId = String(p.requestId || '');
   let ok = false;
   if (!origin || p.origin !== origin || !/^[a-f0-9-]{36}$/i.test(requestId)) {
@@ -23,7 +25,8 @@ function doPost(e) {
     lock.waitLock(10000);
     // This script is bound to the destination spreadsheet, so no SHEET_ID is required.
     const book = SpreadsheetApp.getActiveSpreadsheet();
-    const sheet = book.getSheetByName('Demo requests') || book.insertSheet('Demo requests');
+    // Use the existing first tab when present, so submissions are visible in Sheet1.
+    const sheet = book.getSheetByName('Sheet1') || book.getSheetByName('Demo requests') || book.getSheets()[0] || book.insertSheet('Sheet1');
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(['Request ID', 'Received at', 'Name', 'Email', 'Company / website', 'Service', 'Project', 'Contact consent']);
       sheet.setFrozenRows(1);
