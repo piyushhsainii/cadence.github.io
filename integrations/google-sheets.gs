@@ -1,5 +1,5 @@
 // Paste into a Google Sheet's Extensions > Apps Script editor.
-// In Project Settings > Script properties, set SHEET_ID and SITE_ORIGIN.
+// In Project Settings > Script properties, set SITE_ORIGIN.
 // SITE_ORIGIN must be the exact website origin, e.g. https://yourdomain.com (no path).
 function doPost(e) {
   const config = PropertiesService.getScriptProperties();
@@ -7,11 +7,12 @@ function doPost(e) {
   // Accept either a bare origin or a full GitHub Pages URL, then compare only origins.
   let origin = configuredOrigin;
   try { origin = new URL(configuredOrigin).origin; } catch (ignore) {}
-  const p = e && e.parameter || {};
+  let p = {};
+  try { p = JSON.parse(e.postData.contents || '{}'); } catch (ignore) {}
   const requestId = String(p.requestId || '');
   let ok = false;
   if (!origin || p.origin !== origin || !/^[a-f0-9-]{36}$/i.test(requestId)) {
-    return HtmlService.createHtmlOutput('Invalid request.');
+    return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'invalid origin or request' })).setMimeType(ContentService.MimeType.JSON);
   }
   const lock = LockService.getScriptLock();
   try {
@@ -20,7 +21,8 @@ function doPost(e) {
     const services = ['Content that converts', 'Brand & website revamp', 'Product & MVP development', 'Social media performance marketing', 'A mix of services'];
     if (!name || name.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || company.length > 200 || !message || message.length > 2000 || !services.includes(p.service) || p.consent !== 'yes' || p.website_check) throw Error('Invalid fields');
     lock.waitLock(10000);
-    const book = SpreadsheetApp.openById(config.getProperty('SHEET_ID'));
+    // This script is bound to the destination spreadsheet, so no SHEET_ID is required.
+    const book = SpreadsheetApp.getActiveSpreadsheet();
     const sheet = book.getSheetByName('Demo requests') || book.insertSheet('Demo requests');
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(['Request ID', 'Received at', 'Name', 'Email', 'Company / website', 'Service', 'Project', 'Contact consent']);
