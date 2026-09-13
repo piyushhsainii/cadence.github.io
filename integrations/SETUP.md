@@ -9,7 +9,9 @@ The form is implemented, but submissions are disabled until a real endpoint is c
    - `SITE_ORIGIN`: `https://piyushhsainii.github.io` for this website. A full URL such as `https://piyushhsainii.github.io/cadence.github.io/` is also normalized by the supplied script. For local testing use your exact `http://localhost:PORT` origin, then change it for production.
 4. Choose **Deploy → New deployment → Web app**. Execute as **Me** and allow access to **Anyone**. Authorize the requested spreadsheet access. Keep the spreadsheet itself private. Some managed Google accounts restrict anonymous web apps.
 5. Copy the deployed URL ending in `/exec` into `window.CADENCE_LEADS_ENDPOINT` in `leads-config.js`.
-6. Publish the site files. Submit one clearly labelled test request through the dialog and verify one new row in **Demo requests**, followed by the confirmation message. Verify invalid fields, a network failure and retry too.
+6. Publish the site files. Submit one clearly labelled test request through the dialog and verify one new row in **Demo requests**, followed by the confirmation message. Every valid submission appends a new row, including retries. Verify invalid fields and a network failure too.
+
+If the endpoint opens an **Authorization needed** page (as in the browser network response), the deployment is not public yet. Edit the deployment, set **Execute as: Me**, set **Who has access: Anyone**, authorize the spreadsheet permission as the owner, and deploy a new version. Do not use “Only myself” or “Anyone within your organization”; those settings prevent a public GitHub Pages site from submitting. Re-test the `/exec` URL in an incognito window before testing the form.
 
 The response uses a hidden iframe and a request-specific acknowledgement, rather than assuming a cross-origin request succeeded. Retrying an uncertain request with the same ID does not create a second row. No credentials belong in the website files. This is a public lead endpoint with validation and a honeypot, not an authenticated API; consider managed anti-spam protection if unsolicited submissions become a problem.
 

@@ -26,10 +26,11 @@ function doPost(e) {
       sheet.appendRow(['Request ID', 'Received at', 'Name', 'Email', 'Company / website', 'Service', 'Project', 'Contact consent']);
       sheet.setFrozenRows(1);
     }
-    const duplicate = sheet.getLastRow() > 1 && sheet.getRange(2, 1, sheet.getLastRow() - 1, 1).createTextFinder(requestId).matchEntireCell(true).findNext();
     // Neutralize spreadsheet formulas in all visitor-supplied strings.
     const text = value => /^[\s]*[=+@-]/.test(value) ? "'" + value : value;
-    if (!duplicate) sheet.appendRow([requestId, new Date(), text(name), text(email), text(company), text(p.service), text(message), 'Yes']);
+    // Every valid form submission is appended. Request IDs remain useful for support/debugging,
+    // but are deliberately not used for deduplication.
+    sheet.appendRow([requestId, new Date(), text(name), text(email), text(company), text(p.service), text(message), 'Yes']);
     SpreadsheetApp.flush(); ok = true;
   } catch (error) {
     // Do not echo personal details or internal errors into the browser.
