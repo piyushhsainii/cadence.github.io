@@ -3,7 +3,10 @@
 // SITE_ORIGIN must be the exact website origin, e.g. https://yourdomain.com (no path).
 function doPost(e) {
   const config = PropertiesService.getScriptProperties();
-  const origin = config.getProperty('SITE_ORIGIN');
+  const configuredOrigin = String(config.getProperty('SITE_ORIGIN') || '').trim();
+  // Accept either a bare origin or a full GitHub Pages URL, then compare only origins.
+  let origin = configuredOrigin;
+  try { origin = new URL(configuredOrigin).origin; } catch (ignore) {}
   const p = e && e.parameter || {};
   const requestId = String(p.requestId || '');
   let ok = false;
