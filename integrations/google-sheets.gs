@@ -1,5 +1,5 @@
 // Paste into a Google Sheet's Extensions > Apps Script editor.
-// In Project Settings > Script properties, set SITE_ORIGIN.
+// In Project Settings > Script properties, set SHEET_ID and SITE_ORIGIN.
 // SITE_ORIGIN must be the exact website origin, e.g. https://yourdomain.com (no path).
 function doPost(e) {
   const config = PropertiesService.getScriptProperties();
@@ -23,8 +23,9 @@ function doPost(e) {
     const services = ['Content that converts', 'Brand & website revamp', 'Product & MVP development', 'Social media performance marketing', 'A mix of services'];
     if (!name || name.length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254 || company.length > 200 || !message || message.length > 2000 || !services.includes(p.service) || p.consent !== 'yes' || p.website_check) throw Error('Invalid fields');
     lock.waitLock(10000);
-    // This script is bound to the destination spreadsheet, so no SHEET_ID is required.
-    const book = SpreadsheetApp.getActiveSpreadsheet();
+    const sheetId = String(config.getProperty('SHEET_ID') || '').trim();
+    if (!sheetId) throw Error('Missing SHEET_ID script property');
+    const book = SpreadsheetApp.openById(sheetId);
     // Use the existing first tab when present, so submissions are visible in Sheet1.
     const sheet = book.getSheetByName('Sheet1') || book.getSheetByName('Demo requests') || book.getSheets()[0] || book.insertSheet('Sheet1');
     if (sheet.getLastRow() === 0) {

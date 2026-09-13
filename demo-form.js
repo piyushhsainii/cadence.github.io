@@ -52,7 +52,7 @@
     }, 30000);
     const payload = Object.fromEntries(data.entries());
     fetch(endpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
-      .then(() => { if (!pending) return; cleanup(); form.reset(); requestId = ''; status.textContent = 'Thanks! Your request is received. We’ll get back to you within 24 hours.'; })
+      .then(() => { if (!pending) return; cleanup(); form.reset(); requestId = ''; status.textContent = 'Request sent to our intake. We’ll get back to you within 24 hours.'; })
       .catch(() => { if (!pending) return; cleanup(); status.textContent = 'We couldn’t send your request. Please try again or email us below.'; });
   });
 })();
