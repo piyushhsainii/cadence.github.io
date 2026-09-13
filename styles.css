@@ -2302,3 +2302,13 @@ dialog p {
     margin-bottom: 18px;
   }
 }
+
+/* Compact service cards: shorter image panels and half the internal spacing. */
+#services .service-grid{gap:16px;margin-top:28px}
+#services .service-card{padding:20px;border-radius:var(--radius-md);overflow:hidden}
+#services .service-image{width:calc(100% + 40px);height:120px;aspect-ratio:auto;object-fit:contain;background:var(--cream);margin:-20px -20px 16px;border-radius:0}
+#services .service-card h3{font-size:25px;line-height:1.12;letter-spacing:-.6px;margin:10px 0 12px}
+#services .service-card p{font-size:12px;line-height:1.65;margin-bottom:16px}
+#services .service-tags{gap:6px}
+#services .service-tags .pill{font-size:9px;padding:3px 9px}
+@media(max-width:719px){#services .service-grid{gap:14px}#services .service-card{padding:18px}#services .service-image{width:calc(100% + 36px);height:96px;margin:-18px -18px 14px}#services .service-card h3{font-size:23px}}

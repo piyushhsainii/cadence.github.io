@@ -6,7 +6,7 @@ The form is implemented, but submissions are disabled until a real endpoint is c
 2. Open **Extensions → Apps Script**. Replace the editor contents with `google-sheets.gs` from this folder.
 3. In **Project Settings → Script properties**, add:
    - `SHEET_ID`: the ID between `/d/` and `/edit` in the spreadsheet URL.
-   - `SITE_ORIGIN`: your website's exact origin, for example `https://cadence.example`. No trailing slash or path. For local testing use your exact `http://localhost:PORT` origin, then change it for production.
+   - `SITE_ORIGIN`: `https://piyushhsainii.github.io` for this website. Do not include `/cadence.github.io/`; the origin has no path or trailing slash. For local testing use your exact `http://localhost:PORT` origin, then change it for production.
 4. Choose **Deploy → New deployment → Web app**. Execute as **Me** and allow access to **Anyone**. Authorize the requested spreadsheet access. Keep the spreadsheet itself private. Some managed Google accounts restrict anonymous web apps.
 5. Copy the deployed URL ending in `/exec` into `window.CADENCE_LEADS_ENDPOINT` in `leads-config.js`.
 6. Publish the site files. Submit one clearly labelled test request through the dialog and verify one new row in **Demo requests**, followed by the confirmation message. Verify invalid fields, a network failure and retry too.
@@ -16,3 +16,5 @@ The response uses a hidden iframe and a request-specific acknowledgement, rather
 The 24-hour reply is a promise in the copy, not an automated reply or notification. Check the sheet regularly. Customer details are used only to respond to their inquiry; honor deletion requests made to your contact email.
 
 Official deployment reference: https://developers.google.com/apps-script/guides/web
+
+<!-- https://script.google.com/macros/s/AKfycbxJjo-SbPPgM34indREeE2FE1ZVIAujZZJgmHo00ULH38BdyHRpSo8Z4x0l-8VaLaog5w/exec -->

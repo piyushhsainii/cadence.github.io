@@ -158,12 +158,6 @@ setInterval(() => {
   $('.tab-progress', tabs[activeTab]).style.transform = `scaleX(${elapsed / 3500})`;
 }, 50);
 
-const comparison = $('.comparison'), range = $('input', comparison);
-range.addEventListener('input', () => {
-  comparison.style.setProperty('--split', `${range.value}%`);
-  range.setAttribute('aria-valuetext', `${range.value} percent before, ${100 - range.value} percent after`);
-});
-
 // Honest, replaceable endpoints: no invented contact address, prices, or legal policy.
 const dialog = $('#info-dialog');
 const messages = {
