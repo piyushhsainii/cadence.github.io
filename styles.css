@@ -2317,3 +2317,7 @@ dialog p {
 .footer .brand{font-size:0;gap:10px}
 .footer .brand::before{content:"";display:block;width:36px;height:36px;border-radius:11px;background:var(--cream) url("assets/cadence-logo.png") center/contain no-repeat}
 .footer .brand::after{content:"Cadence®";font-size:25px;letter-spacing:-1.3px}
+.button[data-cal-link]{background:var(--accent-coral);color:var(--ink);border:1px solid transparent;box-shadow:0 8px 18px rgba(42,45,56,.08)}
+.button[data-cal-link]:hover{background:var(--ink);color:var(--cream);box-shadow:none}
+.nav-actions a[data-cal-link]{transition:opacity 150ms ease,transform 150ms ease}
+.nav-actions a[data-cal-link]:hover{opacity:.7;transform:translateY(-1px)}
