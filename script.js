@@ -24,6 +24,12 @@ menu.addEventListener('click', () => {
   menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 });
 $$('.nav-links a').forEach(link => link.addEventListener('click', closeMenu));
+// Cal.com owns these clicks; prevent the fallback hash from jumping to the footer.
+// Keeping the event alive lets Cal's element-click listener open the booking UI.
+$$('[data-cal-link]').forEach(control => control.addEventListener('click', event => {
+  event.preventDefault();
+  closeMenu();
+}));
 document.addEventListener('keydown', event => { if (event.key === 'Escape' && header.classList.contains('menu-open')) { closeMenu(); menu.focus(); } });
 const scrollHeader = () => header.classList.toggle('scrolled', scrollY > 30);
 addEventListener('scroll', scrollHeader, { passive: true }); scrollHeader();
