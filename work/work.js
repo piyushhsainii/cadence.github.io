@@ -42,11 +42,59 @@ function adSpecificMarkup(entry) {
   return `<section class="case-section wrap reveal">${sectionHeading("One source, many outcomes", "The product image")}<div class="case-source">${mediaFigure(entry.productImage, `${entry.title} source product`)}</div></section>${carousel(entry.adsCarousel, "Generated static ads")}`;
 }
 
+const workCategories = [
+  ["all", "All work"],
+  ["logo-design", "Logo design"],
+  ["websites", "Websites"],
+  ["ai-ads", "AI ads"],
+  ["brand-creatives", "Brand creatives"],
+  ["digital-products", "Digital products"]
+];
+
+function workTypes(entry) {
+  const types = [];
+  if (entry.category === "branding") types.push("logo-design");
+  if (entry.category === "website") types.push("websites");
+  if (entry.type === "adCreative") types.push("ai-ads");
+  if (entry.slug === "au-terra-essentials") types.push("brand-creatives");
+  if (entry.category === "saas" || entry.category === "template") types.push("digital-products");
+  return types;
+}
+
 function renderListing() {
   document.title = "All Work | Cadence";
   listing.hidden = false;
   const list = listing.querySelector(".work-accordion");
-  workItems.forEach((entry, index) => list.append(createWorkRow(entry, index, "../")));
+  const filters = listing.querySelector("#work-filters");
+  const rows = workItems.map((entry, index) => {
+    const row = createWorkRow(entry, index, "../");
+    row.dataset.workTypes = workTypes(entry).join(" ");
+    list.append(row);
+    return row;
+  });
+  const available = new Set(workItems.flatMap(workTypes));
+  const categories = workCategories.filter(([value]) => value === "all" || available.has(value));
+  filters.innerHTML = categories.map(([value, label]) => `<button type="button" data-work-filter="${value}" aria-pressed="false">${label}<span>${value === "all" ? workItems.length : workItems.filter(item => workTypes(item).includes(value)).length}</span></button>`).join("");
+
+  const applyFilter = value => {
+    const active = categories.some(([category]) => category === value) ? value : "all";
+    let visibleIndex = 0;
+    rows.forEach(row => {
+      const visible = active === "all" || row.dataset.workTypes.split(" ").includes(active);
+      row.hidden = !visible;
+      if (visible) row.querySelector(".work-number").textContent = String(++visibleIndex).padStart(2, "0");
+    });
+    filters.querySelectorAll("button").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.workFilter === active)));
+    const url = new URL(location.href);
+    if (active === "all") url.searchParams.delete("type"); else url.searchParams.set("type", active);
+    history.replaceState(null, "", url);
+  };
+
+  filters.addEventListener("click", event => {
+    const button = event.target.closest("[data-work-filter]");
+    if (button) applyFilter(button.dataset.workFilter);
+  });
+  applyFilter(new URLSearchParams(location.search).get("type") || "all");
 }
 
 function renderDetail(entry) {
