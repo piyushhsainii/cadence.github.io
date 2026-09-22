@@ -1,0 +1,239 @@
+[
+  {
+    "id": "project-03",
+    "slug": "stillpoint",
+    "type": "project",
+    "title": "Stillpoint",
+    "category": "website",
+    "summary": "An immersive Zen meditation experience shaped through calm motion, layered depth, and mindful interaction.",
+    "coverImage": "../assets/stillpoint/stillpoint-metadata.jpg",
+    "heroImage": "../assets/stillpoint/stillpoint-metadata.jpg",
+    "liveLink": null,
+    "video": "../assets/stillpoint/stillpoint-walkthrough.mp4",
+    "imageCarousel": [
+      "../assets/stillpoint/stillpoint-metadata.jpg"
+    ],
+    "team": [],
+    "similarWork": [
+      "au-terra-essentials",
+      "rowan-ai"
+    ],
+    "featured": true
+  },
+  {
+    "id": "project-01",
+    "slug": "rowan-ai",
+    "type": "project",
+    "title": "Rowan AI",
+    "category": "saas",
+    "summary": "An AI support platform shaped into a clear, confident product experience.",
+    "coverImage": "../assets/rowan-ai/rowan-ai-metadata.png",
+    "heroImage": "../assets/rowan-ai/rowan-ai-metadata.png",
+    "liveLink": null,
+    "video": "../assets/rowan-ai/rowan-ai-walkthrough.mp4",
+    "imageCarousel": [
+      "../assets/rowan-ai/rowan-ai-metadata.png"
+    ],
+    "team": [],
+    "similarWork": [
+      "au-terra-essentials",
+      "lumen-ugc"
+    ],
+    "featured": true
+  },
+  {
+    "id": "project-02",
+    "slug": "au-terra-essentials",
+    "type": "project",
+    "title": "Au Terra Essentials",
+    "category": "website",
+    "summary": "A warm, ritual-led website and campaign system for botanical skincare.",
+    "coverImage": "../assets/aura-essentials/aura-essentials-metadata.png",
+    "heroImage": "../assets/aura-essentials/aura-essentials-metadata.png",
+    "liveLink": null,
+    "video": "../assets/aura-essentials/aura-essentials-video-walkthrough.mp4",
+    "imageCarousel": [
+      "../assets/aura-essentials/ad-creative01.png",
+      "../assets/aura-essentials/ad-creative02.png",
+      "../assets/aura-essentials/ad-creative03.png",
+      "../assets/aura-essentials/ad-creative04.png",
+      "../assets/aura-essentials/ad-creative05.png"
+    ],
+    "team": [],
+    "similarWork": [
+      "rowan-ai",
+      "lumen-ugc"
+    ],
+    "featured": true
+  },
+  {
+    "id": "ad-01",
+    "slug": "lumen-ugc",
+    "type": "adCreative",
+    "title": "Lumen",
+    "adType": "ugc",
+    "summary": "A skincare UGC concept built from product reference to storyboard and final film.",
+    "coverImage": "../assets/lumen-ai/lumen--ai-avatar.png",
+    "heroImage": "../assets/lumen-ai/lumen--ai-avatar.png",
+    "video": "../assets/lumen-ai/lumen-ai-ugc-video.mp4",
+    "storyboardImage": "../assets/lumen-ai/lumen-storyboard.png",
+    "characterImage": "../assets/lumen-ai/lumen--ai-avatar.png",
+    "adsCarousel": [
+      "../assets/lumen-ai/lumen-product.png",
+      "../assets/lumen-ai/lumen--ai-avatar.png"
+    ],
+    "team": [],
+    "similarWork": [
+      "volt-ugc",
+      "au-terra-essentials"
+    ],
+    "featured": true
+  },
+  {
+    "id": "ad-02",
+    "slug": "volt-ugc",
+    "type": "adCreative",
+    "title": "Volt",
+    "adType": "ugc",
+    "summary": "A neon-charged energy drink film developed from a punchy six-frame story.",
+    "coverImage": "../assets/volt/volt-product.png",
+    "heroImage": "../assets/volt/volt-storyboard.png",
+    "video": "../assets/volt/volt.mp4",
+    "storyboardImage": "../assets/volt/volt-storyboard.png",
+    "characterImage": "../assets/volt/volt-product.png",
+    "adsCarousel": [
+      "../assets/volt/volt-product.png",
+      "../assets/volt/volt-storyboard.png"
+    ],
+    "team": [],
+    "similarWork": [
+      "lumen-ugc",
+      "rowan-ai"
+    ],
+    "featured": false
+  },
+  {
+    "id": "project-04",
+    "slug": "daywork",
+    "type": "project",
+    "title": "Daywork",
+    "category": "template",
+    "featured": true,
+    "summary": "A focused planning template that turns deep work into a calm, visible daily rhythm.",
+    "coverImage": "../assets/daywork/deep-focus-hero.png",
+    "heroImage": "../assets/daywork/deep-focus-hero.png",
+    "liveLink": null,
+    "video": "../assets/daywork/deep-focus-calendar-work-prototype.mp4",
+    "imageCarousel": [
+      "../assets/daywork/deep-focus-calendar.png",
+      "../assets/daywork/deep-focus-progress.png",
+      "../assets/daywork/deep-focus-timerpng.png"
+    ],
+    "team": [],
+    "similarWork": [
+      "stillpoint",
+      "rowan-ai"
+    ]
+  },
+  {
+    "id": "brand-01",
+    "slug": "step-forward",
+    "type": "project",
+    "title": "Step Forward",
+    "category": "branding",
+    "featured": true,
+    "summary": "An elegant identity system balancing graceful movement with a refined, quietly confident finish.",
+    "coverImage": "../assets/step-forward/step-forward-1.jpg",
+    "heroImage": "../assets/step-forward/step-forward-1.jpg",
+    "liveLink": null,
+    "video": null,
+    "imageCarousel": [
+      "../assets/step-forward/step-forward-2.jpg",
+      "../assets/step-forward/step-forward-3.jpg",
+      "../assets/step-forward/step-forward-4.jpg",
+      "../assets/step-forward/step-forward-5.jpg",
+      "../assets/step-forward/step-forward-6.jpg",
+      "../assets/step-forward/step-forward-7.jpg"
+    ],
+    "team": [],
+    "similarWork": [
+      "great-moms",
+      "india-rising"
+    ]
+  },
+  {
+    "id": "brand-02",
+    "slug": "great-moms",
+    "type": "project",
+    "title": "Great Moms",
+    "category": "branding",
+    "featured": false,
+    "summary": "A warm, approachable identity built around care, community, and the strength of motherhood.",
+    "coverImage": "../assets/great-moms/great-moms-1.jpg",
+    "heroImage": "../assets/great-moms/great-moms-1.jpg",
+    "liveLink": null,
+    "video": null,
+    "imageCarousel": [
+      "../assets/great-moms/great-moms-2.jpg",
+      "../assets/great-moms/great-moms-3.jpg",
+      "../assets/great-moms/great-moms-4.jpg",
+      "../assets/great-moms/great-moms-5.jpg",
+      "../assets/great-moms/great-moms-6.jpg",
+      "../assets/great-moms/great-moms-7.jpg"
+    ],
+    "team": [],
+    "similarWork": [
+      "step-forward",
+      "india-rising"
+    ]
+  },
+  {
+    "id": "brand-03",
+    "slug": "india-rising",
+    "type": "project",
+    "title": "India Rising",
+    "category": "branding",
+    "featured": false,
+    "summary": "A bold national identity uniting architectural structure, cultural symbolism, and forward momentum.",
+    "coverImage": "../assets/india-rising/india-rising-1.jpg",
+    "heroImage": "../assets/india-rising/india-rising-1.jpg",
+    "liveLink": null,
+    "video": null,
+    "imageCarousel": [
+      "../assets/india-rising/india-rising-2.jpg",
+      "../assets/india-rising/india-rising-3.jpg"
+    ],
+    "team": [],
+    "similarWork": [
+      "step-forward",
+      "great-moms"
+    ]
+  },
+  {
+    "id": "brand-04",
+    "slug": "sixty-degree",
+    "type": "project",
+    "title": "Sixty Degree",
+    "category": "branding",
+    "featured": false,
+    "summary": "A beauty identity shaped around balance, transformation, and a distinctive geometric signature.",
+    "coverImage": "../assets/sixty-degree/sixty-degree-1.jpg",
+    "heroImage": "../assets/sixty-degree/sixty-degree-1.jpg",
+    "liveLink": null,
+    "video": null,
+    "imageCarousel": [
+      "../assets/sixty-degree/sixty-degree-2.jpg",
+      "../assets/sixty-degree/sixty-degree-3.jpg",
+      "../assets/sixty-degree/sixty-degree-4.jpg",
+      "../assets/sixty-degree/sixty-degree-5.jpg",
+      "../assets/sixty-degree/sixty-degree-6.jpg",
+      "../assets/sixty-degree/sixty-degree-7.jpg",
+      "../assets/sixty-degree/sixty-degree-8.jpg"
+    ],
+    "team": [],
+    "similarWork": [
+      "step-forward",
+      "great-moms"
+    ]
+  }
+]
