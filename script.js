@@ -69,7 +69,7 @@ function measureFlight() {
 function animateFlight(now) {
   flightFrame = 0;
   const w = flightWidth, h = flightHeight;
-  const intro = motion.matches || heroFinished ? 1 : clamp((now - flightStarted - 1100) / 600, 0, 1);
+  const intro = motion.matches || heroFinished ? 1 : clamp((now - flightStarted - 550) / 450, 0, 1);
   const eased = 1 - Math.pow(1 - intro, 3);
   const progress = motion.matches || !heroFinished ? 0 : clamp(-heroScroll.getBoundingClientRect().top / Math.max(1, heroScroll.offsetHeight - h), 0, 1);
   const alignTarget = motion.matches ? 0 : clamp(progress / .4, 0, 1);

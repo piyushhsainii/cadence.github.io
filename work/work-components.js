@@ -1,11 +1,15 @@
+const appRoot = new URL("../", import.meta.url);
+const projectUrl = item => new URL(`work/${encodeURIComponent(item.slug)}/`, appRoot).href;
+const assetUrl = src => new URL(src.replace(/^\.\.\//, ""), appRoot).href;
+
 export const itemLabel = item => item.type === "project" ? item.category : `${item.adType} ad`;
 
 export function createWorkCard(item, basePath = "") {
   const link = document.createElement("a");
   link.className = "work-card reveal visible";
-  link.href = `${basePath}work/?slug=${encodeURIComponent(item.slug)}`;
+  link.href = projectUrl(item);
   link.setAttribute("aria-label", `View ${item.title} case study`);
-  const coverImage = item.coverImage.replace(/^\.\.\//, basePath);
+  const coverImage = assetUrl(item.coverImage);
   link.innerHTML = `
     <span class="work-card-media"><img src="${coverImage}" alt="" loading="lazy" decoding="async"></span>
     <span class="work-card-copy">
@@ -18,9 +22,9 @@ export function createWorkCard(item, basePath = "") {
 
 export function createWorkRow(item, index, basePath = "") {
   const link = document.createElement("a");
-  const coverImage = item.coverImage.replace(/^\.\.\//, basePath);
+  const coverImage = assetUrl(item.coverImage);
   link.className = "work-row work-accordion-row reveal visible";
-  link.href = `${basePath}work/?slug=${encodeURIComponent(item.slug)}`;
+  link.href = projectUrl(item);
   link.setAttribute("aria-label", `View ${item.title} case study`);
   link.innerHTML = `
     <span class="work-number">${String(index + 1).padStart(2, "0")}</span>

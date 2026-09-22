@@ -2655,3 +2655,38 @@ html { scroll-behavior: smooth; }
   #services .service-card h3 { font-size: 25px; }
   .closing h2 { font-size: clamp(39px, 12vw, 52px); letter-spacing: -.035em; }
 }
+
+/* Faster first-visit hero sequence. */
+.hero-sequence .hero-mask,
+.hero-sequence .hero-headline { animation-duration: 1.05s; }
+.hero-sequence .hero-photo { animation-duration: .15s; animation-delay: .15s; }
+.hero-sequence .header { animation-duration: .28s; animation-delay: .95s; }
+.hero-sequence .hero-badge { animation-duration: .24s; animation-delay: 1.12s; }
+.hero-sequence .hero-word-first { animation-duration: .24s; animation-delay: 1.16s; }
+.hero-sequence .hero-word-second { animation-duration: .24s; animation-delay: 1.3s; }
+.hero-sequence .hero-subcopy,
+.hero-sequence .hero-cta,
+.hero-sequence .hero-bottom { animation-duration: .3s; animation-delay: 1.48s; }
+.hero-sequence .hero-flight { animation-duration: .4s; animation-delay: .5s; }
+
+/* Defer below-the-fold rendering and keep the first intro brisk. */
+.testimonials,
+.story,
+.features,
+.trust,
+.credibility,
+.stat,
+.work,
+.closing,
+.footer { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+.hero-sequence .hero-mask,
+.hero-sequence .hero-headline { animation-duration: .82s; }
+.hero-sequence .hero-photo { animation-delay: .1s; }
+.hero-sequence .header { animation-delay: .72s; }
+.hero-sequence .hero-badge { animation-delay: .88s; }
+.hero-sequence .hero-word-first { animation-delay: .92s; }
+.hero-sequence .hero-word-second { animation-delay: 1.02s; }
+.hero-sequence .hero-subcopy,
+.hero-sequence .hero-cta,
+.hero-sequence .hero-bottom { animation-delay: 1.16s; animation-duration: .26s; }
+.hero-sequence .hero-flight { animation-delay: .32s; animation-duration: .35s; }

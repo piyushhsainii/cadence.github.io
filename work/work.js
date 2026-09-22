@@ -1,26 +1,30 @@
 import { createWorkCard, createWorkRow, itemLabel } from "./work-components.js";
 
-const workItems = await fetch("./work-data.json").then(response => {
+const workItems = await fetch(new URL("./work-data.json", import.meta.url)).then(response => {
   if (!response.ok) throw new Error("Could not load work data");
   return response.json();
 });
 const listing = document.querySelector("#work-listing");
 const detail = document.querySelector("#work-detail");
-const slug = new URLSearchParams(location.search).get("slug");
+const slug = new URLSearchParams(location.search).get("slug") || document.body.dataset.workSlug;
 const item = workItems.find(entry => entry.slug === slug);
+const appRoot = new URL("../", import.meta.url);
+const assetUrl = src => src ? new URL(src.replace(/^\.\.\//, ""), appRoot).href : src;
+const workIndexUrl = new URL("work/", appRoot).href;
+
 
 const sectionHeading = (eyebrow, title) => `<div class="case-section-heading"><span class="eyebrow">${eyebrow}</span><h2>${title}</h2></div>`;
-const mediaFigure = (src, alt) => `<figure class="case-feature-image"><img src="${src}" alt="${alt}" loading="lazy" decoding="async"></figure>`;
+const mediaFigure = (src, alt) => `<figure class="case-feature-image"><img src="${assetUrl(src)}" alt="${alt}" loading="lazy" decoding="async"></figure>`;
 
 function carousel(images, title) {
   if (!images?.length) return "";
-  return `<section class="case-section wrap reveal" id="gallery">${sectionHeading("Selected frames", title)}<div class="case-gallery" aria-label="${title}">${images.map((src, index) => `<figure><img src="${src}" alt="${title}, frame ${index + 1}" loading="lazy" decoding="async"></figure>`).join("")}</div></section>`;
+  return `<section class="case-section wrap reveal" id="gallery">${sectionHeading("Selected frames", title)}<div class="case-gallery" aria-label="${title}">${images.map((src, index) => `<figure><img src="${assetUrl(src)}" alt="${title}, frame ${index + 1}" loading="lazy" decoding="async"></figure>`).join("")}</div></section>`;
 }
 
 function videoMarkup(url) {
   if (!url) return "";
   const iframe = /youtube|vimeo/.test(url);
-  return `<section class="case-section wrap reveal" id="motion">${sectionHeading("In motion", "Watch the work")}${iframe ? `<div class="case-video"><iframe src="${url}" title="Case study video" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>` : `<video class="case-video" controls preload="none" poster="${item.heroImage}"><source data-src="${url}"></video>`}</section>`;
+  return `<section class="case-section wrap reveal" id="motion">${sectionHeading("In motion", "Watch the work")}${iframe ? `<div class="case-video"><iframe src="${url}" title="Case study video" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>` : `<video class="case-video" controls preload="none" poster="${assetUrl(item.heroImage)}"><source data-src="${assetUrl(url)}"></video>`}</section>`;
 }
 
 function teamMarkup(team) {
@@ -52,7 +56,8 @@ function renderDetail(entry) {
     detail.innerHTML = `<section class="work-empty wrap"><span class="eyebrow">404 / Off beat</span><h1>That work isn't here.</h1><p>The case study may have moved, or the link may be incomplete.</p><a class="button" href="./">See all work &nearr;</a></section>`;
     return;
   }
-  document.title = `${entry.title} | Cadence Work`;
+  const detailLabel = itemLabel(entry).replace(/\b\w/g, letter => letter.toUpperCase());
+  document.title = `${entry.title} | ${detailLabel} Case Study by Cadence`;
   detail.hidden = false;
   const similar = entry.similarWork.map(ref => workItems.find(candidate => candidate.slug === ref)).filter(Boolean);
   const railLinks = [
@@ -65,12 +70,12 @@ function renderDetail(entry) {
   detail.innerHTML = `
     <article class="case-study">
       <aside class="case-rail">
-        <a class="case-back" href="../" aria-label="Back to Cadence home"><span aria-hidden="true">&larr;</span> Cadence</a>
+        <a class="case-back" href="${appRoot.href}" aria-label="Back to Cadence home"><span aria-hidden="true">&larr;</span> Cadence</a>
         <div class="case-rail-index">
           <span class="eyebrow">Project index</span>
           <nav aria-label="Case study sections">${railLinks.map(([id, label]) => `<a href="#${id}">${label}</a>`).join("")}</nav>
         </div>
-        <a class="case-all-work" href="./">All work <span aria-hidden="true">&nearr;</span></a>
+        <a class="case-all-work" href="${workIndexUrl}">All work <span aria-hidden="true">&nearr;</span></a>
       </aside>
       <div class="case-content">
         <header class="case-hero" id="overview">
@@ -79,7 +84,7 @@ function renderDetail(entry) {
             <h1>${entry.title}</h1>
             <div class="case-intro"><span class="eyebrow">Project overview</span><p>${entry.summary}</p>${entry.liveLink ? `<a class="text-link" href="${entry.liveLink}" target="_blank" rel="noopener noreferrer">Visit live project <span aria-hidden="true">&nearr;</span></a>` : ""}</div>
           </div>
-          <figure class="case-hero-media"><img src="${entry.heroImage}" alt="${entry.title} case study" fetchpriority="high" decoding="async"></figure>
+          <figure class="case-hero-media"><img src="${assetUrl(entry.heroImage)}" alt="${entry.title} case study" fetchpriority="high" decoding="async"></figure>
         </header>
         ${videoMarkup(entry.video)}
         ${entry.type === "project" ? carousel(entry.imageCarousel, "Project gallery") : adSpecificMarkup(entry)}
