@@ -335,6 +335,9 @@ img.missing {
   text-align: center;
   padding: 60px 0 50px;
 }
+.proof[data-show-placeholder-brands="false"] {
+  display: none;
+}
 .logos {
   display: flex;
   align-items: center;

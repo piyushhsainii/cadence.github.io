@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "Search matches artist",
+    "Search empty state",
+    "Save artist",
+    "Add itinerary stop",
+    "Reorder itinerary",
+    "Remove itinerary stop",
+    "Filter map markers",
+    "Expand map sheet",
+    "Switch event date",
+    "Sample import to publish",
+    "All 17 screens checked at 375, 390, 393, 430px"
+  ],
+  "errors": [],
+  "overflows": []
+}

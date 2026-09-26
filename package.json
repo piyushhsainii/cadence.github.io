@@ -1,0 +1,13 @@
+{
+  "name": "cadence-agency-site",
+  "private": true,
+  "scripts": {
+    "build:analytics": "esbuild analytics-entry.js --bundle --minify --format=iife --outfile=assets/analytics.js"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

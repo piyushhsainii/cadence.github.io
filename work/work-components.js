@@ -2,7 +2,7 @@ const appRoot = new URL("../", import.meta.url);
 const projectUrl = item => new URL(`work/${encodeURIComponent(item.slug)}/`, appRoot).href;
 const assetUrl = src => new URL(src.replace(/^\.\.\//, ""), appRoot).href;
 
-export const itemLabel = item => item.type === "project" ? item.category : `${item.adType} ad`;
+export const itemLabel = item => item.type === "project" ? (item.category === "mobile" ? "mobile app / prototype" : item.category) : `${item.adType} ad`;
 
 export function createWorkCard(item, basePath = "") {
   const link = document.createElement("a");

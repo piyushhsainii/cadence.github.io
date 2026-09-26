@@ -164,12 +164,11 @@ setInterval(() => {
   $('.tab-progress', tabs[activeTab]).style.transform = `scaleX(${elapsed / 3500})`;
 }, 50);
 
-// Honest, replaceable endpoints: no invented contact address, prices, or legal policy.
+// Informational dialogs for legal copy.
 const dialog = $('#info-dialog');
 const messages = {
-  pricing: ['A plan for your pace.', 'Packages will be tailored to your content formats, platforms, and publishing frequency. Pricing has not been published yet.'],
   social: ['More Cadence, coming soon.', 'Our social profile links will be added here before launch.'],
-  privacy: ['Privacy policy', 'When you send a demo request, Cadence uses your name, email and project details to respond to your inquiry. Connected submissions are stored in Google Sheets. To request deletion, email sainipiyush8860@gmail.com. Google Fonts is loaded from Google.'],
+  privacy: ['Privacy policy', 'When you send a demo request, Cadence uses your name, email and project details to respond to your inquiry. Connected submissions are stored in Google Sheets. We use Vercel Web Analytics to measure visits to this site, and Google Fonts is loaded from Google. To request deletion of your inquiry, email sainipiyush8860@gmail.com.'],
   terms: ['Terms of service', 'Service terms have not been published. Add your business terms here before accepting bookings or payments.']
 };
 $$('[data-dialog]').forEach(button => button.addEventListener('click', () => {

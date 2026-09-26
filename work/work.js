@@ -46,6 +46,7 @@ const workCategories = [
   ["all", "All work"],
   ["logo-design", "Logo design"],
   ["websites", "Websites"],
+  ["mobile-apps", "Mobile development / design prototypes"],
   ["ai-ads", "AI ads"],
   ["brand-creatives", "Brand creatives"],
   ["digital-products", "Digital products"]
@@ -55,6 +56,7 @@ function workTypes(entry) {
   const types = [];
   if (entry.category === "branding") types.push("logo-design");
   if (entry.category === "website") types.push("websites");
+  if (entry.category === "mobile") types.push("mobile-apps");
   if (entry.type === "adCreative") types.push("ai-ads");
   if (entry.slug === "au-terra-essentials") types.push("brand-creatives");
   if (entry.category === "saas" || entry.category === "template") types.push("digital-products");

@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "Totals: $2,136.80 spent, $2,400 budget, $62.46 subscriptions",
+    "Expense validation",
+    "Adding expense updates totals and over-budget alert",
+    "Budget recalculates to $2,800",
+    "Search, recategorize, delete expense",
+    "Search empty state",
+    "Annual subscription normalized to $10/month",
+    "Pause and resume recurring tracking",
+    "Calendar reflects added renewal",
+    "Changes survive reload",
+    "17 screens inspected at 375, 390, 393, 430px"
+  ],
+  "errors": [],
+  "overflows": []
+}

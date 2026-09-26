@@ -1,5 +1,66 @@
 [
   {
+    "id": "mobile-01",
+    "slug": "open-studios",
+    "type": "project",
+    "title": "Open Studios",
+    "category": "mobile",
+    "summary": "A citywide arts discovery mobile prototype with studio maps, artist profiles, and a weekend itinerary.",
+    "coverImage": "../assets/open-studios/presentation.png",
+    "heroImage": "../assets/open-studios/presentation.png",
+    "liveLink": null,
+    "video": "../assets/open-studios/open-studios-walkthrough.mp4",
+    "imageCarousel": [
+      "../assets/open-studios/interactive-prototype.png",
+      "../assets/open-studios/all-screens.png",
+      "../assets/open-studios/design-system.png"
+    ],
+    "team": [],
+    "similarWork": ["luma", "rowan-ai"],
+    "featured": true
+  },
+  {
+    "id": "brand-05",
+    "slug": "drift",
+    "type": "project",
+    "title": "Drift",
+    "category": "branding",
+    "summary": "A fictional sparkling electrolyte brand identity spanning logo, color system, product mockups, and social campaign concepts.",
+    "coverImage": "../assets/drift/product-mockup.png",
+    "heroImage": "../assets/drift/product-mockup.png",
+    "liveLink": null,
+    "video": null,
+    "imageCarousel": [
+      "../assets/drift/identity-system.png",
+      "../assets/drift/logo-variations.png",
+      "../assets/drift/product-and-social-concepts.png",
+      "../assets/drift/social-campaign.png"
+    ],
+    "team": [],
+    "similarWork": ["au-terra-essentials", "great-moms"],
+    "featured": true
+  },
+  {
+    "id": "mobile-02",
+    "slug": "luma",
+    "type": "project",
+    "title": "Luma",
+    "category": "mobile",
+    "summary": "A 17-screen mobile finance prototype bringing budgets, spending, and subscriptions into focus.",
+    "coverImage": "../assets/luma/presentation.png",
+    "heroImage": "../assets/luma/presentation.png",
+    "liveLink": null,
+    "video": "../assets/luma/luma-prototype-walkthrough.mp4",
+    "imageCarousel": [
+      "../assets/luma/interactive-prototype.png",
+      "../assets/luma/all-screens.png",
+      "../assets/luma/design-system.png"
+    ],
+    "team": [],
+    "similarWork": ["open-studios", "rowan-ai"],
+    "featured": false
+  },
+  {
     "id": "project-03",
     "slug": "stillpoint",
     "type": "project",
@@ -141,7 +202,7 @@
     "type": "project",
     "title": "Step Forward",
     "category": "branding",
-    "featured": true,
+    "featured": false,
     "summary": "An elegant identity system balancing graceful movement with a refined, quietly confident finish.",
     "coverImage": "../assets/step-forward/step-forward-1.jpg",
     "heroImage": "../assets/step-forward/step-forward-1.jpg",
