@@ -2,7 +2,8 @@
   "name": "cadence-agency-site",
   "private": true,
   "scripts": {
-    "build:analytics": "esbuild analytics-entry.js --bundle --minify --format=iife --outfile=assets/analytics.js"
+    "build": "node build.mjs",
+    "build:analytics": "node build-analytics.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.0"
